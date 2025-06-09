@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>肥胖与减重：数据揭示中国健康新挑战</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  
+  <!-- 配置Tailwind自定义颜色和字体 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6', // 蓝色主色调，代表健康和信任
+            secondary: '#10B981', // 绿色辅助色，代表希望和积极
+            accent: '#EF4444', // 红色强调色，代表警示和关注
+            dark: '#1E293B', // 深色文本
+            light: '#F8FAFC', // 浅色背景
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+      }
+      .bg-gradient-green {
+        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+    }
+  </style>
+</head>
+<body class="bg-light text-dark antialiased">
+  <!-- 导航栏 -->
+  <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold text-primary flex items-center">
+        <i class="fa fa-heartbeat mr-2"></i>
+        <span>健康中国</span>
+      </a>
+      
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#overview" class="font-medium hover:text-primary transition-colors">肥胖现状</a>
+        <a href="#impact" class="font-medium hover:text-primary transition-colors">健康代价</a>
+        <a href="#solutions" class="font-medium hover:text-primary transition-colors">科学减重</a>
+        <a href="#actions" class="font-medium hover:text-primary transition-colors">社会行动</a>
+        <a href="#future" class="font-medium hover:text-primary transition-colors">未来展望</a>
+      </nav>
+      
+      <!-- 移动端菜单按钮 -->
+      <button class="md:hidden text-dark text-xl" id="menuBtn">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div class="md:hidden hidden bg-white shadow-lg absolute w-full" id="mobileMenu">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <a href="#overview" class="font-medium hover:text-primary transition-colors py-2">肥胖现状</a>
+        <a href="#impact" class="font-medium hover:text-primary transition-colors py-2">健康代价</a>
+        <a href="#solutions" class="font-medium hover:text-primary transition-colors py-2">科学减重</a>
+        <a href="#actions" class="font-medium hover:text-primary transition-colors py-2">社会行动</a>
+        <a href="#future" class="font-medium hover:text-primary transition-colors py-2">未来展望</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section class="pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-blue text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 text-shadow leading-tight">
+          肥胖与减重：数据揭示中国健康新挑战
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 opacity-90">
+          应对肥胖危机，共建健康中国
+        </p>
+        <a href="#overview" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+          了解详情 <i class="fa fa-arrow-down ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 肥胖现状部分 -->
+  <section id="overview" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">一、肥胖现状：从"超重大国"到"肥胖危机"</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">中国正面临前所未有的肥胖挑战，数据揭示了令人担忧的趋势</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fa fa-line-chart text-primary mr-2"></i>
+              成人超重与肥胖率
+            </h3>
+            <p class="text-gray-700">
+              据《中国居民营养与慢性病状况报告（2020年）》显示，2018年我国成人超重率达34.3%，肥胖率16.4%，较2002年分别增长50.4%和130.9%。
+            </p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fa fa-child text-primary mr-2"></i>
+              儿童青少年肥胖问题
+            </h3>
+            <p class="text-gray-700">
+              儿童青少年肥胖率呈爆发式增长：6-17岁超重率11.1%、肥胖率7.9%，6岁以下儿童肥胖率达10.4%。若趋势持续，2030年儿童青少年超重肥胖率将达31.8%。
+            </p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fa fa-globe text-primary mr-2"></i>
+              全球视角下的中国
+            </h3>
+            <p class="text-gray-700">
+              《2025年世界肥胖报告》预测，到2030年全球高BMI人群将达30亿，中国贡献超17%，高BMI成年人数预计达5.15亿，其中重度肥胖人群将超3000万。
+            </p>
+          </div>
+        </div>
+        
+        <div class="space-y-8">
+          <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+            <h3 class="text-xl font-semibold mb-4">成人超重与肥胖率变化（2002-2018）</h3>
+            <div class="h-80">
+              <canvas id="adultObesityChart"></canvas>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+              <h3 class="text-xl font-semibold mb-4">儿童青少年肥胖率</h3>
+              <div class="h-64">
+                <canvas id="childObesityChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+              <h3 class="text-xl font-semibold mb-4">全球高BMI人群预测（2030年）</h3>
+              <div class="h-64">
+                <canvas id="globalObesityChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 健康代价部分 -->
+  <section id="impact" class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">二、健康代价：肥胖背后的疾病负担</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">肥胖不仅是体型问题，更是慢性病的"导火索"</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="bg-white p-6 rounded-xl shadow-lg h-full">
+            <h3 class="text-xl font-semibold mb-6">肥胖相关疾病风险</h3>
+            <div class="h-[500px]">
+              <canvas id="diseaseRiskChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="space-y-6 order-1 lg:order-2">
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fa fa-heartbeat text-accent mr-2"></i>
+              代谢疾病风险
+            </h3>
+            <p class="text-gray-700">
+              肥胖者糖尿病风险是正常人的3-7倍，高血压、高血脂患病率分别达正常人群的2.8倍和2.3倍。
+            </p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fa fa-medkit text-accent mr-2"></i>
+              癌症风险
+            </h3>
+            <p class="text-gray-700">
+              绝经后女性肥胖者乳腺癌风险增加20%，子宫内膜癌风险翻倍；男性结肠癌风险上升30%。
+            </p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fa fa-money text-accent mr-2"></i>
+              社会成本
+            </h3>
+            <p class="text-gray-700">
+              因肥胖导致的医疗支出每年超2000亿元，占慢性病总支出的12%，间接损失（如误工、生产力下降）更是难以估量。
+            </p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4">WHO：高BMI是13种慢性病的主要危险因素</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div class="bg-gray-50 p-3 rounded-lg text-center">
+                <i class="fa fa-heart text-accent mb-2"></i>
+                <p class="text-sm">心血管疾病</p>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-lg text-center">
+                <i class="fa fa-stethoscope text-accent mb-2"></i>
+                <p class="text-sm">2型糖尿病</p>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-lg text-center">
+                <i class="fa fa-tint text-accent mb-2"></i>
+                <p class="text-sm">高血压</p>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-lg text-center">
+                <i class="fa fa-medical-record text-accent mb-2"></i>
+                <p class="text-sm">某些癌症</p>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-lg text-center">
+                <i class="fa fa-lungs text-accent mb-2"></i>
+                <p class="text-sm">睡眠呼吸暂停</p>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-lg text-center">
+                <i class="fa fa-ellipsis-h text-accent mb-2"></i>
+                <p class="text-sm">等8种疾病</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 科学减重部分 -->
+  <section id="solutions" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">三、科学减重：从"速成陷阱"到"全生命周期管理"</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">告别错误观念，拥抱科学减重方法</p>
+      </div>
+      
+      <div class="space-y-16">
+        <!-- 判断标准 -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 flex items-center">
+            <span class="bg-primary text-white p-2 rounded-full mr-3">1</span>
+            判断标准：多维评估取代单一指标
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-balance-scale text-primary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">BMI基础筛查</h4>
+              <p class="text-gray-700">
+                成人正常范围18.5-23.9，24-27.9为超重，≥28为肥胖（《成人体重判定》标准）。
+              </p>
+              <div class="mt-4 h-3 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-green-500 via-yellow-500 to-red-500" style="width: 100%"></div>
+              </div>
+              <div class="flex justify-between mt-2 text-xs text-gray-600">
+                <span>偏瘦</span>
+                <span>正常</span>
+                <span>超重</span>
+                <span>肥胖</span>
+              </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-ruler-combined text-primary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">腹型肥胖预警</h4>
+              <p class="text-gray-700">
+                男性腰围≥90cm、女性≥85cm，即使BMI正常，也需警惕代谢风险。
+              </p>
+              <div class="mt-4">
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm">男性</span>
+                  <span class="text-sm font-medium">≥90cm</span>
+                </div>
+                <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-accent" style="width: 60%"></div>
+                </div>
+                <div class="flex justify-between mt-3 mb-1">
+                  <span class="text-sm">女性</span>
+                  <span class="text-sm font-medium">≥85cm</span>
+                </div>
+                <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-accent" style="width: 56.6%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-tint text-primary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">体脂率精准化</h4>
+              <p class="text-gray-700">
+                成年男性体脂率>25%、女性>30%即为肥胖，内脏脂肪指数>9需干预。
+              </p>
+              <div class="mt-4">
+                <canvas id="bodyFatChart" height="100"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 减重误区 -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 flex items-center">
+            <span class="bg-primary text-white p-2 rounded-full mr-3">2</span>
+            减重误区：拒绝"饥饿游戏"与"药物依赖"
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-accent/10 p-6 rounded-xl shadow-sm border-l-4 border-accent">
+              <h4 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fa fa-exclamation-triangle text-accent mr-2"></i>
+                极端节食危害
+              </h4>
+              <p class="text-gray-700 mb-4">
+                断碳饮食可能导致肌肉流失（每月流失1-3kg）、月经紊乱，复胖率超90%。
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-accent">90%</div>
+                  <div class="text-sm text-gray-600">复胖率</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-accent">1-3kg</div>
+                  <div class="text-sm text-gray-600">每月肌肉流失</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-accent/10 p-6 rounded-xl shadow-sm border-l-4 border-accent">
+              <h4 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fa fa-exclamation-triangle text-accent mr-2"></i>
+                盲目用药风险
+              </h4>
+              <p class="text-gray-700 mb-4">
+                我国仅奥利司他获批用于肥胖治疗，且需在医生指导下使用，擅自使用GLP-1类药物可能引发低血糖、胃肠道反应。
+              </p>
+              <div class="space-y-2 mt-4">
+                <div class="flex items-center">
+                  <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                  <span class="text-sm">仅奥利司他获批</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fa fa-exclamation-circle text-accent mr-2"></i>
+                  <span class="text-sm">需医生指导使用</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fa fa-exclamation-circle text-accent mr-2"></i>
+                  <span class="text-sm">擅自用药风险大</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 科学路径 -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 flex items-center">
+            <span class="bg-primary text-white p-2 rounded-full mr-3">3</span>
+            科学路径："吃动平衡+精准干预"
+          </h3>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h4 class="text-xl font-semibold mb-6 flex items-center">
+                <i class="fa fa-cutlery text-primary mr-2"></i>
+                膳食革命
+              </h4>
+              
+              <div class="space-y-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="flex justify-between items-center mb-2">
+                    <h5 class="font-medium">能量控制</h5>
+                    <span class="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">关键</span>
+                  </div>
+                  <p class="text-gray-700">
+                    每日减少500-1000千卡摄入，脂肪供能比控制在20%-30%（《体重管理指导原则》）。
+                  </p>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="flex justify-between items-center mb-2">
+                    <h5 class="font-medium">结构优化</h5>
+                    <span class="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">关键</span>
+                  </div>
+                  <p class="text-gray-700">
+                    主食中全谷物占比≥1/3，每日蔬菜500g、水果200-350g，优质蛋白（鱼、蛋、豆）占比30%。
+                  </p>
+                  <div class="mt-3 h-3 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500" style="width: 100%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1 text-xs text-gray-600">
+                    <span>全谷物</span>
+                    <span>蔬菜</span>
+                    <span>水果</span>
+                    <span>优质蛋白</span>
+                  </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="flex justify-between items-center mb-2">
+                    <h5 class="font-medium">减糖限盐</h5>
+                    <span class="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">重要</span>
+                  </div>
+                  <p class="text-gray-700">
+                    添加糖<25g/天，食盐<5g/天，警惕加工食品中的"隐形糖盐"。
+                  </p>
+                  <div class="mt-3 grid grid-cols-2 gap-2">
+                    <div>
+                      <div class="text-xs text-gray-600 mb-1">添加糖</div>
+                      <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent" style="width: 40%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="text-xs text-gray-600 mb-1">食盐</div>
+                      <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent" style="width: 60%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 class="text-xl font-semibold mb-6 flex items-center">
+                <i class="fa fa-heartbeat text-primary mr-2"></i>
+                运动处方
+              </h4>
+              
+              <div class="space-y-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="flex justify-between items-center mb-2">
+                    <h5 class="font-medium">有氧运动</h5>
+                    <span class="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">关键</span>
+                  </div>
+                  <p class="text-gray-700">
+                    每周150分钟中等强度运动（如快走、游泳），或75分钟高强度运动，建议分次完成（每次≥10分钟）。
+                  </p>
+                  <div class="mt-3">
+                    <canvas id="aerobicExerciseChart" height="100"></canvas>
+                  </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="flex justify-between items-center mb-2">
+                    <h5 class="font-medium">抗阻训练</h5>
+                    <span class="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">重要</span>
+                  </div>
+                  <p class="text-gray-700">
+                    每周2-3次肌肉力量练习（如哑铃、深蹲），维持瘦体重，提升基础代谢。
+                  </p>
+                  <div class="mt-3 grid grid-cols-3 gap-2 text-center">
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                      <i class="fa fa-dumbbell text-primary mb-1"></i>
+                      <p class="text-xs">哑铃</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                      <i class="fa fa-user text-primary mb-1"></i>
+                      <p class="text-xs">深蹲</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                      <i class="fa fa-balance-scale text-primary mb-1"></i>
+                      <p class="text-xs">平板支撑</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="flex justify-between items-center mb-2">
+                    <h5 class="font-medium">日常动起来</h5>
+                    <span class="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">基础</span>
+                  </div>
+                  <p class="text-gray-700">
+                    日均步数≥6000步，减少久坐（连续坐姿≤1小时），利用碎片化时间运动（如爬楼梯、家务）。
+                  </p>
+                  <div class="mt-3 flex items-center">
+                    <div class="w-16 h-16 rounded-full border-4 border-primary flex items-center justify-center mr-4">
+                      <span class="font-bold">6000+</span>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium">日均目标步数</div>
+                      <div class="h-3 bg-gray-200 rounded-full overflow-hidden w-40 mt-1">
+                        <div class="h-full bg-primary" style="width: 75%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 社会行动部分 -->
+  <section id="actions" class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">四、社会行动：从"个人努力"到"系统变革"</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">肥胖防控需要全社会共同努力</p>
+      </div>
+      
+      <div class="space-y-16">
+        <!-- 政策护航 -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 flex items-center">
+            <span class="bg-secondary text-white p-2 rounded-full mr-3">1</span>
+            政策护航：国家层面的"体重管理年"
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-hospital-o text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">医疗体系升级</h4>
+              <p class="text-gray-700">
+                2025年底前，三级医院普遍设立体重管理门诊，基层医疗机构提供体重监测服务。
+              </p>
+              <div class="mt-4">
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm">当前进度</span>
+                  <span class="text-sm font-medium">65%</span>
+                </div>
+                <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-secondary" style="width: 65%"></div>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">目标：2025年底前完成</div>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-graduation-cap text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">校园防控</h4>
+              <p class="text-gray-700">
+                中小学开设营养与健康课程，禁止售卖高糖饮料和零食，保障每日1小时体育活动。
+              </p>
+              <div class="mt-4 grid grid-cols-3 gap-2">
+                <div class="bg-gray-50 p-2 rounded-lg text-center">
+                  <i class="fa fa-book text-secondary mb-1"></i>
+                  <p class="text-xs">营养课程</p>
+                </div>
+                <div class="bg-gray-50 p-2 rounded-lg text-center">
+                  <i class="fa fa-ban text-secondary mb-1"></i>
+                  <p class="text-xs">禁售高糖</p>
+                </div>
+                <div class="bg-gray-50 p-2 rounded-lg text-center">
+                  <i class="fa fa-futbol-o text-secondary mb-1"></i>
+                  <p class="text-xs">1小时运动</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-cutlery text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">食品革新</h4>
+              <p class="text-gray-700">
+                推动低糖、低脂食品标准制定，要求食品包装标注"糖盐脂"含量，鼓励企业开发功能性减重食品。
+              </p>
+              <div class="mt-4">
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm">标注覆盖率</span>
+                  <span class="text-sm font-medium">45%</span>
+                </div>
+                <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-secondary" style="width: 45%"></div>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">目标：2026年底前80%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 地方实践 -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 flex items-center">
+            <span class="bg-secondary text-white p-2 rounded-full mr-3">2</span>
+            地方实践：南宁与上海的探索
+          </h3>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+              <h4 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fa fa-map-marker text-secondary mr-2"></i>
+                南宁"5000人减重计划"
+              </h4>
+              <p class="text-gray-700 mb-4">
+                通过"医疗处方+社群互助"模式，为志愿者提供个性化方案，6个月平均减重5-8kg，达标率超70%。
+              </p>
+              <div class="h-64">
+                <canvas id="nanningChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+              <h4 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fa fa-map-marker text-secondary mr-2"></i>
+                上海儿童肥胖干预
+              </h4>
+              <p class="text-gray-700 mb-4">
+                针对就诊率不足10%的问题，试点"学校-医院-家庭"联动机制，通过体测筛查、家长课堂降低漏诊率。
+              </p>
+              <div class="h-64">
+                <canvas id="shanghaiChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 科技赋能 -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 flex items-center">
+            <span class="bg-secondary text-white p-2 rounded-full mr-3">3</span>
+            科技赋能：智慧减重新工具
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-mobile text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">数字化管理</h4>
+              <p class="text-gray-700">
+                "健康体重"APP下载量超500万，提供饮食记录、运动打卡、AI营养师建议，用户6个月平均减重4.2kg。
+              </p>
+              <div class="mt-4 text-center">
+                <div class="text-3xl font-bold text-secondary">500万+</div>
+                <div class="text-sm text-gray-600">下载量</div>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-heartbeat text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">可穿戴设备</h4>
+              <p class="text-gray-700">
+                体脂秤、智能手环等设备渗透率年增25%，实时监测体重、体脂、睡眠，助力科学调整计划。
+              </p>
+              <div class="mt-4">
+                <canvas id="wearableDeviceChart" height="100"></canvas>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-line-chart text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">数据分析</h4>
+              <p class="text-gray-700">
+                大数据分析个性化健康方案，根据用户特征推荐最适合的饮食和运动计划。
+              </p>
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <div class="bg-gray-50 p-2 rounded-lg">
+                  <div class="text-2xl font-bold text-secondary">90%</div>
+                  <div class="text-xs text-gray-600">方案匹配度</div>
+                </div>
+                <div class="bg-gray-50 p-2 rounded-lg">
+                  <div class="text-2xl font-bold text-secondary">85%</div>
+                  <div class="text-xs text-gray-600">用户满意度</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm card-hover">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <i class="fa fa-users text-secondary text-2xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-3">远程医疗</h4>
+              <p class="text-gray-700">
+                线上专家咨询服务，让偏远地区居民也能获得专业的减重指导和建议。
+              </p>
+              <div class="mt-4 flex justify-center">
+                <div class="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center relative">
+                  <i class="fa fa-video-camera text-secondary text-3xl"></i>
+                  <div class="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <i class="fa fa-check text-white text-xs"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 未来展望部分 -->
+  <section id="future" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">五、未来展望：减重不是终点，而是健康起点</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">肥胖防控是一场持久战，需要个人自律、家庭支持、社会协同</p>
+      </div>
+      
+      <div class="bg-primary/5 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+        <!-- 装饰元素 -->
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full"></div>
+        
+        <div class="relative">
+          <div class="max-w-3xl mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-6">《健康中国行动（2030年）》目标</h3>
+            
+            <div class="space-y-8">
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <i class="fa fa-users text-primary"></i>
+                  </div>
+                  <h4 class="text-xl font-semibold">减缓成人肥胖增长率</h4>
+                </div>
+                <p class="text-gray-700">
+                  通过多方面干预措施，降低成人肥胖率增长速度，逐步改善国民体重健康状况。
+                </p>
+                <div class="mt-4">
+                  <canvas id="futureObesityChart" height="120"></canvas>
+                </div>
+              </div>
+              
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <i class="fa fa-book text-primary"></i>
+                  </div>
+                  <h4 class="text-xl font-semibold">提升健康体重知识知晓率</h4>
+                </div>
+                <p class="text-gray-700">
+                  加强健康教育宣传，使居民对健康体重的认知和理解提升20%，促进主动健康管理。
+                </p>
+                <div class="mt-4">
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm">当前知晓率</span>
+                    <span class="text-sm font-medium">45%</span>
+                  </div>
+                  <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-primary to-blue-400" style="width: 45%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1 text-sm text-gray-600">
+                    <span>2023</span>
+                    <span>目标：2030年65%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <i class="fa fa-heartbeat text-primary"></i>
+                  </div>
+                  <h4 class="text-xl font-semibold">延长人均健康预期寿命</h4>
+                </div>
+                <p class="text-gray-700">
+                  通过改善整体健康状况，提高生活质量，使人均健康预期寿命延长，实现健康老龄化。
+                </p>
+                <div class="mt-4">
+                  <canvas id="lifeExpectancyChart" height="120"></canvas>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-12">
+              <blockquote class="italic text-lg text-gray-700 border-l-4 border-primary pl-4 mx-auto max-w-xl">
+                "健康是人生最宝贵的财富，让我们携手共进，为实现健康中国的目标而努力！"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行动号召部分 -->
+  <section class="py-16 md:py-24 bg-gradient-blue text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-6">加入我们，一起行动！</h2>
+        <p class="text-xl mb-8 opacity-90">
+          肥胖防控需要每个人的参与，从现在开始，为了自己和家人的健康，行动起来！
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-colors">
+            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-user text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">个人行动</h3>
+            <p class="opacity-90">
+              采取健康的生活方式，合理饮食，适量运动，定期体检，保持健康体重。
+            </p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-colors">
+            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-home text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">家庭支持</h3>
+            <p class="opacity-90">
+              关注家人健康，营造健康的家庭饮食环境，鼓励家人参与体育活动。
+            </p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-colors">
+            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-users text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">社会参与</h3>
+            <p class="opacity-90">
+              支持和参与社区健康活动，传播健康理念，共同推动社会健康环境建设。
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-12">
+          <a href="#" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            立即开始健康之旅 <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fa fa-heartbeat mr-2"></i>
+            健康中国
+          </h3>
+          <p class="text-gray-400 mb-4">
+            关注国民健康，防控肥胖危机，共建健康中国
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-weibo"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-wechat"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="#overview" class="text-gray-400 hover:text-white transition-colors">肥胖现状</a></li>
+            <li><a href="#impact" class="text-gray-400 hover:text-white transition-colors">健康代价</a></li>
+            <li><a href="#solutions" class="text-gray-400 hover:text-white transition-colors">科学减重</a></li>
+            <li><a href="#actions" class="text-gray-400 hover:text-white transition-colors">社会行动</a></li>
+            <li><a href="#future" class="text-gray-400 hover:text-white transition-colors">未来展望</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">联系我们</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center">
+              <i class="fa fa-envelope-o mr-2 text-gray-400"></i>
+              <a href="mailto:health@example.com" class="text-gray-400 hover:text-white transition-colors">health@example.com</a>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-phone mr-2 text-gray-400"></i>
+              <span class="text-gray-400">400-123-4567</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-map-marker mr-2 text-gray-400"></i>
+              <span class="text-gray-400">北京市海淀区健康路88号</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+        <p>&copy; 2025 健康中国行动. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow-md');
+        navbar.classList.remove('py-3');
+        navbar.classList.add('py-2');
+      } else {
+        navbar.classList.remove('bg-white', 'shadow-md');
+        navbar.classList.remove('py-2');
+        navbar.classList.add('py-3');
+      }
+    });
+    
+    // 移动端菜单
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      if (mobileMenu.classList.contains('hidden')) {
+        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+      } else {
+        menuBtn.innerHTML = '<i class="fa fa-times"></i>';
+      }
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+        }
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // 图表初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      // 成人肥胖率图表
+      const adultObesityCtx = document.getElementById('adultObesityChart').getContext('2d');
+      new Chart(adultObesityCtx, {
+        type: 'bar',
+        data: {
+          labels: ['2002年', '2018年', '2030年预测'],
+          datasets: [
+            {
+              label: '超重率',
+              data: [22.8, 34.3, 42.0],
+              backgroundColor: 'rgba(59, 130, 246, 0.7)',
+              borderColor: 'rgba(59, 130, 246, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '肥胖率',
+              data: [7.1, 16.4, 28.0],
+              backgroundColor: 'rgba(239, 68, 68, 0.7)',
+              borderColor: 'rgba(239, 68, 68, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '百分比(%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+            }
+          }
+        }
+      });
+      
+      // 儿童青少年肥胖率图表
+      const childObesityCtx = document.getElementById('childObesityChart').getContext('2d');
+      new Chart(childObesityCtx, {
+        type: 'line',
+        data: {
+          labels: ['6岁以下', '6-17岁', '2030年预测'],
+          datasets: [
+            {
+              label: '超重率',
+              data: [7.2, 11.1, 15.9],
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              borderColor: 'rgba(59, 130, 246, 1)',
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true
+            },
+            {
+              label: '肥胖率',
+              data: [10.4, 7.9, 15.9],
+              backgroundColor: 'rgba(239, 68, 68, 0.2)',
+              borderColor: 'rgba(239, 68, 68, 1)',
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '百分比(%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+      
+      // 全球高BMI人群预测图表
+      const globalObesityCtx = document.getElementById('globalObesityChart').getContext('2d');
+      new Chart(globalObesityCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['中国', '其他国家'],
+          datasets: [{
+            data: [17, 83],
+            backgroundColor: [
+              'rgba(59, 130, 246, 0.8)',
+              'rgba(156, 163, 175, 0.6)'
+            ],
+            borderColor: [
+              'rgba(59, 130, 246, 1)',
+              'rgba(156, 163, 175, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          },
+          cutout: '65%'
+        }
+      });
+      
+      // 疾病风险图表
+      const diseaseRiskCtx = document.getElementById('diseaseRiskChart').getContext('2d');
+      new Chart(diseaseRiskCtx, {
+        type: 'radar',
+        data: {
+          labels: ['糖尿病', '高血压', '高血脂', '心血管疾病', '乳腺癌', '子宫内膜癌', '结肠癌'],
+          datasets: [
+            {
+              label: '肥胖者风险倍数',
+              data: [5, 2.8, 2.3, 2.5, 1.2, 2.0, 1.3],
+              backgroundColor: 'rgba(239, 68, 68, 0.2)',
+              borderColor: 'rgba(239, 68, 68, 1)',
+              pointBackgroundColor: 'rgba(239, 68, 68, 1)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgba(239, 68, 68, 1)'
+            },
+            {
+              label: '正常体重者',
+              data: [1, 1, 1, 1, 1, 1, 1],
+              backgroundColor: 'rgba(16, 185, 129, 0.2)',
+              borderColor: 'rgba(16, 185, 129, 1)',
+              pointBackgroundColor: 'rgba(16, 185, 129, 1)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgba(16, 185, 129, 1)'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: {
+                display: true
+              },
+              suggestedMin: 0,
+              suggestedMax: 6
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+      
+      // 体脂率图表
+      const bodyFatCtx = document.getElementById('bodyFatChart').getContext('2d');
+      new Chart(bodyFatCtx, {
+        type: 'bar',
+        data: {
+          labels: ['男性正常', '男性肥胖', '女性正常', '女性肥胖'],
+          datasets: [{
+            label: '体脂率(%)',
+            data: [15, 28, 22, 32],
+            backgroundColor: [
+              'rgba(59, 130, 246, 0.7)',
+              'rgba(239, 68, 68, 0.7)',
+              'rgba(59, 130, 246, 0.7)',
+              'rgba(239, 68, 68, 0.7)'
+            ],
+            borderColor: [
+              'rgba(59, 130, 246, 1)',
+              'rgba(239, 68, 68, 1)',
+              'rgba(59, 130, 246, 1)',
+              'rgba(239, 68, 68, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '体脂率(%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+      
+      // 有氧运动图表
+      const aerobicExerciseCtx = document.getElementById('aerobicExerciseChart').getContext('2d');
+      new Chart(aerobicExerciseCtx, {
+        type: 'line',
+        data: {
+          labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+          datasets: [{
+            label: '建议分钟数',
+            data: [30, 0, 30, 0, 30, 45, 45],
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '分钟数'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+      
+      // 南宁减重计划图表
+      const nanningCtx = document.getElementById('nanningChart').getContext('2d');
+      new Chart(nanningCtx, {
+        type: 'bar',
+        data: {
+          labels: ['第1月', '第2月', '第3月', '第4月', '第5月', '第6月'],
+          datasets: [{
+            label: '平均减重(kg)',
+            data: [2.1, 1.8, 1.5, 1.2, 0.8, 0.6],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '体重下降(kg)'
+              }
+            }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: '南宁5000人减重计划效果'
+            }
+          }
+        }
+      });
+      
+      // 上海儿童肥胖干预图表
+      const shanghaiCtx = document.getElementById('shanghaiChart').getContext('2d');
+      new Chart(shanghaiCtx, {
+        type: 'line',
+        data: {
+          labels: ['干预前', '第1阶段', '第2阶段', '第3阶段', '当前'],
+          datasets: [
+            {
+              label: '肥胖率(%)',
+              data: [15.2, 14.3, 13.5, 12.8, 11.9],
+              backgroundColor: 'rgba(239, 68, 68, 0.2)',
+              borderColor: 'rgba(239, 68, 68, 1)',
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true
+            },
+            {
+              label: '就诊率(%)',
+              data: [8.5, 15.2, 23.7, 32.4, 41.8],
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              borderColor: 'rgba(59, 130, 246, 1)',
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '百分比(%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+      
+      // 可穿戴设备渗透率图表
+      const wearableDeviceCtx = document.getElementById('wearableDeviceChart').getContext('2d');
+      new Chart(wearableDeviceCtx, {
+        type: 'line',
+        data: {
+          labels: ['2020', '2021', '2022', '2023', '2024', '2025预测'],
+          datasets: [{
+            label: '渗透率(%)',
+            data: [15, 18.75, 23.4, 29.2, 36.5, 45.6],
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '渗透率(%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+      
+      // 未来肥胖率预测图表
+      const futureObesityCtx = document.getElementById('futureObesityChart').getContext('2d');
+      new Chart(futureObesityCtx, {
+        type: 'line',
+        data: {
+          labels: ['2020', '2025', '2030目标'],
+          datasets: [
+            {
+              label: '若无干预',
+              data: [18.9, 25.4, 31.8],
+              backgroundColor: 'rgba(239, 68, 68, 0.2)',
+              borderColor: 'rgba(239, 68, 68, 1)',
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true
+            },
+            {
+              label: '健康中国行动',
+              data: [18.9, 22.5, 24.5],
+              backgroundColor: 'rgba(16, 185, 129, 0.2)',
+              borderColor: 'rgba(16, 185, 129, 1)',
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: '肥胖率(%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+      
+      // 预期寿命图表
+      const lifeExpectancyCtx = document.getElementById('lifeExpectancyChart').getContext('2d');
+      new Chart(lifeExpectancyCtx, {
+        type: 'bar',
+        data: {
+          labels: ['2020', '2030目标'],
+          datasets: [
+            {
+              label: '人均预期寿命',
+              data: [77.9, 81.3],
+              backgroundColor: 'rgba(59, 130, 246, 0.7)',
+              borderColor: 'rgba(59, 130, 246, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '健康预期寿命',
+              data: [68.7, 72.5],
+              backgroundColor: 'rgba(16, 185, 129, 0.7)',
+              borderColor: 'rgba(16, 185, 129, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 60,
+              title: {
+                display: true,
+                text: '年龄(岁)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+    
